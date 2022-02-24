@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "test:staged":"jest"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,6 @@
     "typescript": "^4.5.5"
   },
   "lint-staged": {
-    "*.ts": "eslint --fix"
+    "*.ts": ["eslint --fix","npm run test:staged"]
   }
 }
