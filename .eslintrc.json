@@ -1,9 +1,16 @@
 {
-  "extends": "standard-with-typescript",
+  "extends": [
+    "standard-with-typescript"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "semi": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/semi": [
+      "error"
+    ]
   }
 }
