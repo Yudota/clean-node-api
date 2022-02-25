@@ -11,6 +11,7 @@
     "comma-dangle": "off",
     "@typescript-eslint/semi": [
       "error"
-    ]
+    ],
+    "space-before-function-paren": "off"
   }
 }
