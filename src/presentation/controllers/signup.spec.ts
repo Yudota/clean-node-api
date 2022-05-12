@@ -62,7 +62,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamError('password'))
   })
-  test('Should return 400 if no passwordConfirmation is provided', () => {
+  test('Should return 400 if no password confirmation is provided', () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
@@ -76,6 +76,22 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
+  test('Should return 400 if password confirmation fails', () => {
+    const { sut, emailValidatorStub } = makeSut()
+    jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+    const httpRequest = {
+      body: {
+        name: 'name',
+        email: 'email@example.com',
+        password: 'password',
+        passwordConfirmation: 'invalid_password',
+
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
+  })
   test('Should return 400 if an invalid email is provided', () => {
     const { sut, emailValidatorStub } = makeSut()
     jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
@@ -84,11 +100,12 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'email@example.com',
         password: 'password',
-        passwordConfirmation: 'passwordConfirmation',
+        passwordConfirmation: 'password',
 
       }
     }
     const httpResponse = sut.handle(httpRequest)
+    console.log(httpResponse.body)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new InvalidParamError('email'))
   })
@@ -100,7 +117,7 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'any_email@example.com',
         password: 'password',
-        passwordConfirmation: 'passwordConfirmation',
+        passwordConfirmation: 'password',
 
       }
     }
@@ -117,7 +134,7 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'email@example.com',
         password: 'password',
-        passwordConfirmation: 'passwordConfirmation',
+        passwordConfirmation: 'password',
 
       }
     }
