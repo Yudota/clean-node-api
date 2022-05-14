@@ -1,9 +1,9 @@
 module.exports = {
-  roots: ['./src'],
+  roots: ['<rootDir>/src'],
   collectCoverage: true,
-  collectCoverageFrom: ['./src/**/*.{js,ts}', '!**/node_modules/**'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/main/**', '!<rootDir/src/domain/**/*.ts', '!<rootDir>/src/**/*-protocols.ts', '!**/protocols/**', '!**/node_modules/**'],
   coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
   testEnvironment: 'node',
   transform: {
     '.+\\.ts$': 'ts-jest'
