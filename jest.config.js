@@ -1,7 +1,7 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  roots: ['./src'],
   collectCoverage: true,
-  collectCoverageFrom: ['<RootDir>/src/**/*.ts'],
+  collectCoverageFrom: ['./src/**/*.{js,ts}', '!**/node_modules/**'],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   testEnvironment: 'node',
