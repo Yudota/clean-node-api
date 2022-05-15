@@ -3,3 +3,5 @@ dist
 coverage
 globalConfig.json
 package-lock.json
+
+test
