@@ -7,6 +7,7 @@ describe('Mongo Helper', () => {
 
   afterAll(async () => {
     await sut.disconnect()
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500))
   })
 
   test('Should reconnect if mongodb if down', async () => {
