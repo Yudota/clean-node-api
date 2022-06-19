@@ -12,7 +12,8 @@
     "test:staged": "npm test -- ",
     "test:ci": "npm test -- --coverage --forceExit",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "e-test":"echo teste"
   },
   "keywords": [],
   "author": "",
