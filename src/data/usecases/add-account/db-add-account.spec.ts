@@ -1,13 +1,13 @@
 import { AddAccountRepository } from '../../protocols/db/add-account-repository'
 import { DbAddAccount } from './db-add-account'
-import { Encrypter, AddAccountModel, AccountModel } from './db-add-account-protocols'
-const makeEncrypter = (): Encrypter => {
-  class EncrypterStub implements Encrypter {
+import { Hasher, AddAccountModel, AccountModel } from './db-add-account-protocols'
+const makeEncrypter = (): Hasher => {
+  class HasherStub implements Hasher {
     async encrypt (value: string): Promise<string> {
       return await new Promise(resolve => resolve('hashed_password'))
     }
   }
-  return new EncrypterStub()
+  return new HasherStub()
 }
 
 const makeAddAccountRepository = (): AddAccountRepository => {
@@ -32,7 +32,7 @@ const makeFakeAccountData = (): AddAccountModel => ({
 })
 interface SutTypes {
   sut: DbAddAccount
-  encrypterStub: Encrypter
+  encrypterStub: Hasher
   addAccountRepositoryStub: AddAccountRepository
 
 }
@@ -44,16 +44,16 @@ const makeSut = (): SutTypes => {
 }
 
 describe('DbAddAccount UseCase', () => {
-  test('Should call Encrypter with correct password', async () => {
-    const { sut, encrypterStub } = makeSut()
-    const encryptSpy = jest.spyOn(encrypterStub, 'encrypt')
+  test('Should call Hasher with correct password', async () => {
+    const { sut, encrypterStub: hasherStub } = makeSut()
+    const encryptSpy = jest.spyOn(hasherStub, 'encrypt')
 
     await sut.add(makeFakeAccountData())
     expect(encryptSpy).toHaveBeenCalledWith('valid_password')
   })
-  test('Should throw if Encrypter throws', async () => {
-    const { sut, encrypterStub } = makeSut()
-    jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+  test('Should throw if Hasher throws', async () => {
+    const { sut, encrypterStub: hasherStub } = makeSut()
+    jest.spyOn(hasherStub, 'encrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const promise = sut.add(makeFakeAccountData())
     await expect(promise).rejects.toThrow()
   })
