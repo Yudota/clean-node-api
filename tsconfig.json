@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": " ./dist",      // Onde queremos gerar o código JS minificado
-    "module": "commonjs",     // Desenvolvemos em Import e Export e depois, quando compilar, gera o que os navegadores entendem
-    "target": "es2019",       // Qual versão ECMAScript vai ser gerada.
-    "esModuleInterop": true,  // conversão de módulos que utilizam require e module.export para import / export
-    "allowJs": true,           // Se tiver arquivos de config em js ao invés de json, ele permite
+    "outDir": " ./dist", // Onde queremos gerar o código JS minificado
+    "module": "commonjs", // Desenvolvemos em Import e Export e depois, quando compilar, gera o que os navegadores entendem
+    "target": "esnext", // Qual versão ECMAScript vai ser gerada.
+    "esModuleInterop": true, // conversão de módulos que utilizam require e module.export para import / export
+    "allowJs": true, // Se tiver arquivos de config em js ao invés de json, ele permite
     "strictNullChecks": false
-
   }
 }
