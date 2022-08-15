@@ -28,7 +28,6 @@ describe('Account Mongo Repository', () => {
     expect(account.name).toBe('any_name')
     expect(account.email).toBe('any_email@mail.com')
     expect(account.password).toBe('any_password')
-    console.log(`${method} - is a validAccount\n`)
   }
 
   test('Should return an account on add success', async () => {
@@ -39,11 +38,6 @@ describe('Account Mongo Repository', () => {
       password: 'any_password'
     })
     isValidAccount(account, 'Should return an account on add success')
-    // expect(account).toBeTruthy()
-    // expect(account.id).toBeTruthy()
-    // expect(account.name).toBe('any_name')
-    // expect(account.email).toBe('any_email@mail.com')
-    // expect(account.password).toBe('any_password')
   })
   test('Should return an account on loadByEmail success', async () => {
     const sut = makeSut()
@@ -54,15 +48,22 @@ describe('Account Mongo Repository', () => {
     })
     const account = await sut.loadByEmail('any_email@mail.com')
     isValidAccount(account, 'Should return an account on loadByEmail success')
-    // expect(account).toBeTruthy()
-    // expect(account.id).toBeTruthy()
-    // expect(account.name).toBe('any_name')
-    // expect(account.email).toBe('any_email@mail.com')
-    // expect(account.password).toBe('any_password')
   })
   test('Should return null if loadByEmail fails', async () => {
     const sut = makeSut()
     const account = await sut.loadByEmail('any_email@mail.com')
     expect(account).toBeFalsy()
+  })
+  test('Should update the account accessToken on updateAccessToken success', async () => {
+    const sut = makeSut()
+    const res = await accountCollection.insertOne({
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    })
+    await sut.updateAccessToken(res.insertedId.toString(), 'any_token')
+    const fakeAccount = await accountCollection.findOne({ _id: res.insertedId })
+    expect(fakeAccount).toBeTruthy()
+    expect(fakeAccount.accessToken).toBe('any_token')
   })
 })
