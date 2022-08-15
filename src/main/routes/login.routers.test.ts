@@ -51,5 +51,15 @@ describe('Login Routes', () => {
       console.log(response.body)
       expect(response.status).toBe(200)
     })
+    test('Should return 401 on login', async () => {
+      const response = await request(app)
+        .post('/api/login')
+        .send({
+          email: 'yuri.fernandes.961@gmail.com',
+          password: 'any_password',
+        })
+      console.log(response.body)
+      expect(response.status).toBe(401)
+    })
   })
 })
