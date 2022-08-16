@@ -5,6 +5,7 @@
     "target": "esnext", // Qual versão ECMAScript vai ser gerada.
     "esModuleInterop": true, // conversão de módulos que utilizam require e module.export para import / export
     "strictNullChecks": false,
+    "baseUrl": "src"
   },
   "include": [
     "src/**/*"
