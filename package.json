@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node ./dist/main/server.js",
-    "heroku-postbuild": "npm run build",
     "build": "rimraf dist && tsc",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests  --detectOpenHandles --runInBand --no-cache ",
