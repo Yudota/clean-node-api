@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node ./dist/main/server.js",
-    "prestart": "npm run build",
+    "prestart": "ls && exit",
     "build": "tsc",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests  --detectOpenHandles --runInBand --no-cache ",
