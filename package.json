@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node ./dist/main/server.js",
     "prestart": "npm run build",
-    "build": "ls src/domain/useCases && rimraf dist && tsc",
+    "build": "rimraf dist && tsc",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests  --detectOpenHandles --runInBand --no-cache ",
     "test:verbose": "jest --passWithNoTests --runInBand",
