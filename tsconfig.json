@@ -4,7 +4,10 @@
     "module": "commonjs", // Desenvolvemos em Import e Export e depois, quando compilar, gera o que os navegadores entendem
     "target": "esnext", // Qual versão ECMAScript vai ser gerada.
     "esModuleInterop": true, // conversão de módulos que utilizam require e module.export para import / export
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/**/*"
