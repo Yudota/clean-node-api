@@ -5,7 +5,11 @@
     "target": "esnext", // Qual versão ECMAScript vai ser gerada.
     "esModuleInterop": true, // conversão de módulos que utilizam require e module.export para import / export
     "strictNullChecks": false,
-    "baseUrl": "src"
+    "forceConsistentCasingInFileNames": true, //Força o case sensitive nos nomes de arquivos
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
   },
   "include": [
     "src/**/*"
