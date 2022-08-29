@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node ./dist/main/server.js",
-    "prestart": "npm run build",
     "build": "rimraf dist && tsc",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests  --detectOpenHandles --runInBand --no-cache ",
